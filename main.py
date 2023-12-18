@@ -37,4 +37,23 @@ save_btn.pack()
 dec_btn = Button(text="Decrypt")
 dec_btn.pack()
 
+
+def crypt_text_func(text, keyw):
+    crypt_text = ''.join(chr(ord(i) + keyw) for i in text)
+    return crypt_text
+
+
+secret_input = secret_text.get(1.0, END)
+key = master_entry.get()
+crypt_text = crypt_text_func(secret_input, key)
+
+
+def decrypt_text_func(text, keyw):
+    decrypt_text = ''.join(chr(ord(i) - keyw) for i in text)
+    return decrypt_text
+
+
+secret_input2 = secret_text.get(1.0, END)
+decrypt_text = decrypt_text_func(secret_input2, key)
+
 ws.mainloop()
