@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
-import os
 
 ws = Tk()
 ws.geometry("400x750")
@@ -44,13 +43,15 @@ def crypt_text_func(keyw, text):
     with open("secretnotes.txt", mode="a") as secret_notes:
         secret_notes.write(f"\nencoding='utf-8'\n{title_entry.get()}\n{encoded}\n")
 
-    secret_text.insert(1.0, encoded)
+    secret_text.delete(1.0, END)
+    master_entry.delete(0, END)
 
 
 def decrypt_text_func(keyw, text):
 
     decoded = ''.join(chr(ord(i) - keyw) for i in text)
-
+    secret_text.delete(1.0, END)
+    master_entry.delete(0, END)
     secret_text.insert(1.0, decoded)
 
 
@@ -59,6 +60,8 @@ def crypt_btn_func():
     try:
         return crypt_text_func(int(key), secret_input)
     except ValueError:
+        secret_text.delete(1.0, END)
+        master_entry.delete(0, END)
         return error_msg()
 
 
