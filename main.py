@@ -42,7 +42,7 @@ def crypt_text_func(keyw, text):
     encoded = ''.join(chr(ord(i) + keyw) for i in text)
 
     with open("secretnotes.txt", mode="a") as secret_notes:
-        secret_notes.write(f"\n{title_entry.get()}\n{encoded}\n")
+        secret_notes.write(f"\nencoding='utf-8'\n{title_entry.get()}\n{encoded}\n")
 
     secret_text.insert(1.0, encoded)
 
